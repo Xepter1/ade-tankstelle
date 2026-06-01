@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 50" role="img" aria-label="NFC kontaktlos">
+  <rect width="80" height="50" rx="8" fill="#ffffff" stroke="#e3e8ee" stroke-width="1.5"/>
+  <g fill="none" stroke="#0b3d62" stroke-width="2.6" stroke-linecap="round">
+    <path d="M30 17a16 16 0 0 1 0 16"/>
+    <path d="M37 14a23 23 0 0 1 0 22"/>
+    <path d="M44 11a30 30 0 0 1 0 28"/>
+  </g>
+</svg>

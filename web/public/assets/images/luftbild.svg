@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500" role="img" aria-label="Luftbild Platzhalter">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#dfeaf2"/>
+      <stop offset="1" stop-color="#c3d6e4"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="500" fill="url(#sky)"/>
+  <!-- Dach der Tankstelle -->
+  <rect x="380" y="150" width="440" height="40" rx="8" fill="#0b3d62"/>
+  <rect x="430" y="190" width="20" height="150" fill="#6c7a89"/>
+  <rect x="750" y="190" width="20" height="150" fill="#6c7a89"/>
+  <!-- Zapfsäulen -->
+  <rect x="520" y="250" width="30" height="70" rx="5" fill="#f5a623"/>
+  <rect x="650" y="250" width="30" height="70" rx="5" fill="#f5a623"/>
+  <!-- Fahrbahn -->
+  <rect x="0" y="340" width="1200" height="160" fill="#8a99a8"/>
+  <g stroke="#fff" stroke-width="6" stroke-dasharray="40 30" opacity=".8">
+    <line x1="0" y1="420" x2="1200" y2="420"/>
+  </g>
+  <text x="600" y="470" font-family="Arial,sans-serif" font-size="22" fill="#33414f" text-anchor="middle" opacity=".7">Luftbild-Platzhalter – hier kommen Ihre Aufnahmen hin</text>
+</svg>

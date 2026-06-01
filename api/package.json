@@ -1,0 +1,18 @@
+{
+  "name": "tankstelle-stettner-api",
+  "version": "1.0.0",
+  "description": "Kontaktformular-Backend (SMTP) für die Website der Tankstelle Stettner",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.4.1",
+    "nodemailer": "^6.9.16"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
