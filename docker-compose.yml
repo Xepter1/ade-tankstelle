@@ -1,7 +1,8 @@
 services:
   web:
     build: ./web
-    image: tankstelle-stettner-web
+    # Lokal bauen statt aus Registry pullen (Portainer "Pull and redeploy")
+    pull_policy: build
     restart: unless-stopped
     ports:
       # Host-Port (in Portainer/.env via WEB_PORT überschreibbar), Standard 8080
@@ -11,7 +12,7 @@ services:
 
   api:
     build: ./api
-    image: tankstelle-stettner-api
+    pull_policy: build
     restart: unless-stopped
     # Werte kommen aus den Portainer-"Environment variables" des Stacks
     # bzw. lokal aus einer .env-Datei im selben Verzeichnis.
