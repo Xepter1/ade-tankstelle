@@ -220,10 +220,164 @@ h3 { font-size: 1.25rem; }
   padding: 28px; box-shadow: var(--shadow-sm);
 }
 .about-card p { color: var(--muted); margin-bottom: 0; }
-.about-aerial { margin: 34px 0 0; }
-.about-aerial img { width: 100%; border-radius: var(--radius); border: 1px solid var(--line); }
-.about-aerial figcaption { color: var(--muted); font-size: .9rem; margin-top: 10px; text-align: center; }
-.placeholder-note { color: #9aa6b4; font-style: italic; font-size: .85em; }
+/* ---------- Aerial Gallery ---------- */
+.aerial-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-top: 34px;
+}
+.gallery-item {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+  aspect-ratio: 4 / 3;
+  background: var(--bg-alt);
+}
+.gallery-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+.gallery-link img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.gallery-link:hover img {
+  transform: scale(1.06);
+}
+.gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(11, 61, 98, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.gallery-link:hover .gallery-overlay {
+  opacity: 1;
+}
+.gallery-icon {
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--navy-dark);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  box-shadow: var(--shadow);
+  transform: translateY(8px);
+  transition: transform 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.gallery-link:hover .gallery-icon {
+  transform: translateY(0);
+}
+.aerial-gallery-caption {
+  color: var(--muted);
+  font-size: .9rem;
+  margin-top: 12px;
+  text-align: center;
+}
+
+/* ---------- Lightbox ---------- */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 20, 30, 0.93);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.lightbox.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.lightbox-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.lightbox-img {
+  max-width: 100%;
+  max-height: 80vh;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transform: scale(0.95);
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.lightbox.active .lightbox-img {
+  transform: scale(1);
+}
+.lightbox-close {
+  position: absolute;
+  top: -48px;
+  right: 0;
+  background: none;
+  border: 0;
+  color: #fff;
+  font-size: 2.2rem;
+  cursor: pointer;
+  padding: 5px;
+  line-height: 1;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+.lightbox-close:hover {
+  opacity: 1;
+}
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.1);
+  border: 0;
+  color: #fff;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  transition: background 0.2s, opacity 0.2s;
+  opacity: 0.8;
+}
+.lightbox-nav:hover {
+  background: rgba(255, 255, 255, 0.2);
+  opacity: 1;
+}
+.lightbox-prev {
+  left: -64px;
+}
+.lightbox-next {
+  right: -64px;
+}
+
+@media (max-width: 768px) {
+  .lightbox-prev { left: 10px; top: auto; bottom: -64px; transform: none; }
+  .lightbox-next { right: 10px; top: auto; bottom: -64px; transform: none; }
+  .lightbox-close { right: 10px; top: 10px; position: fixed; }
+}
 
 /* ---------- Downloads ---------- */
 .downloads-layout { display: grid; grid-template-columns: 320px 1fr; gap: 28px; align-items: center; }

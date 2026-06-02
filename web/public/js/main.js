@@ -133,4 +133,81 @@
         });
     });
   }
+
+  /* ---------- Lightbox-Galerie ---------- */
+  var lightbox = document.getElementById("lightbox");
+  var lightboxImg = document.getElementById("lightboxImg");
+  var lightboxClose = document.getElementById("lightboxClose");
+  var lightboxPrev = document.getElementById("lightboxPrev");
+  var lightboxNext = document.getElementById("lightboxNext");
+  var galleryLinks = document.querySelectorAll(".gallery-link");
+
+  var currentImageIndex = 0;
+  var imagesList = [];
+
+  if (lightbox && lightboxImg && galleryLinks.length > 0) {
+    // Liste aller Galeriebilder aufbauen
+    galleryLinks.forEach(function (link, index) {
+      imagesList.push({
+        src: link.getAttribute("href"),
+        alt: link.querySelector("img").getAttribute("alt") || ""
+      });
+
+      link.addEventListener("click", function (e) {
+        e.preventDefault();
+        currentImageIndex = index;
+        openLightbox();
+      });
+    });
+
+    function openLightbox() {
+      updateLightboxImage();
+      lightbox.classList.add("active");
+      lightbox.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden"; // Scrollen auf dem Body verhindern
+      lightboxClose.focus();
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove("active");
+      lightbox.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = ""; // Scrollen wieder erlauben
+    }
+
+    function updateLightboxImage() {
+      var imgData = imagesList[currentImageIndex];
+      lightboxImg.src = imgData.src;
+      lightboxImg.alt = imgData.alt;
+    }
+
+    function showNext() {
+      currentImageIndex = (currentImageIndex + 1) % imagesList.length;
+      updateLightboxImage();
+    }
+
+    function showPrev() {
+      currentImageIndex = (currentImageIndex - 1 + imagesList.length) % imagesList.length;
+      updateLightboxImage();
+    }
+
+    lightboxClose.addEventListener("click", closeLightbox);
+
+    if (lightboxPrev) lightboxPrev.addEventListener("click", showPrev);
+    if (lightboxNext) lightboxNext.addEventListener("click", showNext);
+
+    // Klick auf den abgedunkelten Hintergrund schließt die Lightbox ebenfalls
+    lightbox.addEventListener("click", function (e) {
+      if (e.target === lightbox || e.target.classList.contains("lightbox-content")) {
+        closeLightbox();
+      }
+    });
+
+    // Tastatursteuerung für bessere Barrierefreiheit
+    document.addEventListener("keydown", function (e) {
+      if (!lightbox.classList.contains("active")) return;
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowRight") showNext();
+      if (e.key === "ArrowLeft") showPrev();
+    });
+  }
 })();
