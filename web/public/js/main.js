@@ -210,4 +210,68 @@
       if (e.key === "ArrowLeft") showPrev();
     });
   }
+
+  /* ---------- Header-Zustand beim Scrollen ---------- */
+  var header = document.getElementById("top");
+  if (header) {
+    var onScroll = function () {
+      if (window.scrollY > 24) header.classList.add("scrolled");
+      else header.classList.remove("scrolled");
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+  }
+
+  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- Scroll-Reveal (Einblenden beim Scrollen) ---------- */
+  var revealEls = document.querySelectorAll("[data-reveal]");
+  if (revealEls.length) {
+    if (reduceMotion || !("IntersectionObserver" in window)) {
+      revealEls.forEach(function (el) { el.classList.add("is-visible"); });
+    } else {
+      var revealObserver = new IntersectionObserver(function (entries, obs) {
+        entries.forEach(function (entry, i) {
+          if (entry.isIntersecting) {
+            var el = entry.target;
+            // sanftes Staffeln innerhalb desselben Containers
+            var delay = el.parentElement ? Array.prototype.indexOf.call(el.parentElement.children, el) % 4 : 0;
+            el.style.transitionDelay = (delay * 70) + "ms";
+            el.classList.add("is-visible");
+            obs.unobserve(el);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+      revealEls.forEach(function (el) { revealObserver.observe(el); });
+    }
+  }
+
+  /* ---------- Count-up der Kennzahlen ---------- */
+  var counters = document.querySelectorAll("[data-count]");
+  if (counters.length) {
+    var animateCount = function (el) {
+      var target = parseInt(el.getAttribute("data-count"), 10) || 0;
+      if (reduceMotion) { el.textContent = target; return; }
+      var dur = 1400, start = null;
+      var step = function (ts) {
+        if (!start) start = ts;
+        var p = Math.min((ts - start) / dur, 1);
+        var eased = 1 - Math.pow(1 - p, 3); // easeOutCubic
+        el.textContent = Math.round(eased * target);
+        if (p < 1) requestAnimationFrame(step);
+        else el.textContent = target;
+      };
+      requestAnimationFrame(step);
+    };
+    if (!("IntersectionObserver" in window)) {
+      counters.forEach(animateCount);
+    } else {
+      var countObserver = new IntersectionObserver(function (entries, obs) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) { animateCount(entry.target); obs.unobserve(entry.target); }
+        });
+      }, { threshold: 0.6 });
+      counters.forEach(function (el) { countObserver.observe(el); });
+    }
+  }
 })();
