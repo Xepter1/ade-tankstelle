@@ -7,23 +7,6 @@ services:
     ports:
       # Host-Port (in Portainer/.env via WEB_PORT überschreibbar), Standard 8080
       - "${WEB_PORT:-8080}:80"
-    depends_on:
-      - api
 
-  api:
-    build: ./api
-    pull_policy: build
-    restart: unless-stopped
-    # Werte kommen aus den Portainer-"Environment variables" des Stacks
-    # bzw. lokal aus einer .env-Datei im selben Verzeichnis.
-    environment:
-      SMTP_HOST: ${SMTP_HOST}
-      SMTP_PORT: ${SMTP_PORT:-587}
-      SMTP_SECURE: ${SMTP_SECURE:-false}
-      SMTP_USER: ${SMTP_USER}
-      SMTP_PASS: ${SMTP_PASS}
-      MAIL_FROM: ${MAIL_FROM:-info@tankstelle-stettner.de}
-      MAIL_TO: ${MAIL_TO:-info@tankstelle-stettner.de}
-    expose:
-      - "3000"
-    # Kein Host-Port nötig: nur nginx (web) spricht intern mit der API.
+# Hinweis: Reine statische Seite (nginx). Das Kontaktformular wurde durch einen
+# mailto:-Link ersetzt – es gibt kein Node-/SMTP-Backend mehr (Ordner api/ ungenutzt).

@@ -54,7 +54,7 @@
           <a class="back-link" href="/">&larr; Zurück zur Startseite</a>
           <span class="eyebrow">Schreiben Sie uns</span>
           <h1>Kontakt</h1>
-          <p class="section-lead">Sie haben eine Frage, möchten ein Kundenkonto eröffnen oder uns einfach erreichen? Wir freuen uns auf Ihre Nachricht – persönlich, telefonisch oder über das Formular.</p>
+          <p class="section-lead">Sie haben eine Frage, möchten ein Kundenkonto eröffnen oder uns einfach erreichen? Wir freuen uns auf Ihre Nachricht – persönlich, telefonisch oder per E-Mail.</p>
         </header>
 
         <div class="contact-grid">
@@ -90,35 +90,21 @@
             </div>
           </div>
 
-          <form class="contact-form" id="contactForm" novalidate data-reveal>
-            <h3>Kontaktformular</h3>
-            <div class="form-row">
-              <label for="cf-name">Name <span aria-hidden="true">*</span></label>
-              <input type="text" id="cf-name" name="name" required autocomplete="name" />
+          <div class="contact-cta" data-reveal>
+            <h3>Schreiben Sie uns</h3>
+            <p>Am schnellsten erreichen Sie uns telefonisch oder per E-Mail. Ein Klick auf „E-Mail schreiben" öffnet direkt Ihr E-Mail-Programm mit unserer Adresse – Sie müssen nichts abtippen.</p>
+            <div class="contact-cta-actions">
+              <a class="btn btn-primary btn-lg" href="mailto:info@tankstelle-stettner.de?subject=Anfrage%20%C3%BCber%20die%20Website">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M4 4h16a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Zm8 7L5 6.5V18h14V6.5L12 11Zm0-2 6.5-4h-13L12 9Z"/></svg>
+                E-Mail schreiben
+              </a>
+              <a class="btn btn-dark btn-lg" href="tel:+4980868469">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11 11 0 0 0 3.5.56 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11 11 0 0 0 .56 3.5 1 1 0 0 1-.24 1l-2.22 2.3Z"/></svg>
+                08086 / 8469
+              </a>
             </div>
-            <div class="form-row">
-              <label for="cf-email">E-Mail <span aria-hidden="true">*</span></label>
-              <input type="email" id="cf-email" name="email" required autocomplete="email" />
-            </div>
-            <div class="form-row">
-              <label for="cf-phone">Telefon <small>(optional)</small></label>
-              <input type="tel" id="cf-phone" name="phone" autocomplete="tel" />
-            </div>
-            <div class="form-row">
-              <label for="cf-message">Nachricht <span aria-hidden="true">*</span></label>
-              <textarea id="cf-message" name="message" rows="5" required></textarea>
-            </div>
-            <!-- Honeypot gegen Spam – für Menschen unsichtbar -->
-            <div class="hp-field" aria-hidden="true">
-              <label for="cf-website">Website</label>
-              <input type="text" id="cf-website" name="website" tabindex="-1" autocomplete="off" />
-            </div>
-            <div class="form-row form-consent">
-              <label><input type="checkbox" id="cf-privacy" name="privacy" required /> Ich habe die <a href="/datenschutz.html" target="_blank">Datenschutzerklärung</a> gelesen und stimme der Verarbeitung meiner Daten zur Bearbeitung der Anfrage zu. <span aria-hidden="true">*</span></label>
-            </div>
-            <button type="submit" class="btn btn-primary btn-lg" id="cf-submit">Nachricht senden</button>
-            <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
-          </form>
+            <p class="contact-cta-mail">Oder direkt an <a href="mailto:info@tankstelle-stettner.de">info@tankstelle-stettner.de</a></p>
+          </div>
         </div>
       </div>
     </section>

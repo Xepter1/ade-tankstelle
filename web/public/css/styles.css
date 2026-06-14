@@ -429,6 +429,14 @@ h3 { font-size: 1.3rem; font-weight: 700; letter-spacing: -.01em; }
 .form-status.ok { color: var(--green); }
 .form-status.err { color: var(--red-2); }
 
+/* ---------- Kontakt-CTA (mailto statt Formular) ---------- */
+.contact-cta { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(26px, 4vw, 40px); box-shadow: var(--shadow); align-self: start; }
+.contact-cta h3 { font-size: 1.4rem; }
+.contact-cta > p { color: var(--muted); margin: 0; }
+.contact-cta-actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 24px 0 14px; }
+.contact-cta-actions .btn { flex: 1 1 auto; justify-content: center; }
+.contact-cta-mail { font-size: .92rem; color: var(--muted); margin: 0; }
+
 /* ---------- Footer ---------- */
 .site-footer { background: var(--dark-2); color: #b9bbc2; padding: 64px 0 32px; border-top: 1px solid var(--line-dark); }
 .footer-inner { display: grid; grid-template-columns: 1.4fr 1fr; gap: 32px; align-items: start; }
