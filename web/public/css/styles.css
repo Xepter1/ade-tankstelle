@@ -238,25 +238,33 @@ h3 { font-size: 1.3rem; font-weight: 700; letter-spacing: -.01em; }
 .opening-time { font-family: var(--font-display); font-size: 2.4rem; font-weight: 800; color: var(--red); margin: .12em 0 .3em; letter-spacing: -.02em; }
 .opening-note { color: var(--muted); margin: 0; }
 
-/* ---------- Kraftstoffe ---------- */
-.fuel-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(248px, 1fr)); gap: 22px; }
-.fuel-card {
-  background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
-  padding: 30px; box-shadow: var(--shadow-sm);
-  transition: transform .2s cubic-bezier(.2,.7,.2,1), box-shadow .2s ease, border-color .2s ease;
+/* ---------- Kraftstoffe (editoriale Liste) ---------- */
+.fuel-list { margin-top: 8px; border-top: 1px solid var(--line); }
+.fuel-row {
+  display: grid; grid-template-columns: minmax(210px, 290px) 1fr;
+  gap: clamp(20px, 5vw, 64px); align-items: start;
+  padding: clamp(26px, 3.4vw, 40px) 24px clamp(26px, 3.4vw, 40px) 28px;
+  border-bottom: 1px solid var(--line); position: relative;
+  transition: background .25s ease;
 }
-.fuel-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); border-color: #dcdce2; }
-.fuel-card-feature { border: 1px solid var(--red); box-shadow: 0 0 0 1px var(--red), var(--shadow); background: linear-gradient(180deg, #fff, #fff7f6); }
-.fuel-card p { color: var(--muted); margin-bottom: 0; }
-.fuel-card h3 small { font-weight: 500; color: var(--muted); font-size: .8em; }
-.fuel-tag {
-  display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
-  padding: .38em .9em; border-radius: 999px; margin-bottom: 16px; color: #fff;
+.fuel-row::before {
+  content: ""; position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+  width: 5px; height: 42px; border-radius: 0 3px 3px 0;
+  background: var(--fuel, var(--red)); transition: height .3s cubic-bezier(.2,.7,.2,1);
 }
-.fuel-e5 { background: #2e8b57; }
-.fuel-diesel { background: #4b5563; }
-.fuel-plus { background: #7c3aed; }
-.fuel-b0 { background: var(--red); }
+.fuel-row:hover { background: #fff; }
+.fuel-row:hover::before { height: calc(100% - 32px); }
+.fuel-kind {
+  display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--fuel, var(--red)); margin-bottom: .7em;
+}
+.fuel-row h3 { font-size: clamp(1.35rem, 2.6vw, 1.95rem); margin: 0; line-height: 1.1; }
+.fuel-row h3 small { display: block; font-weight: 500; color: var(--muted); font-size: .8rem; letter-spacing: .02em; margin-top: .45em; }
+.fuel-row-desc { color: var(--muted); margin: 0; max-width: 62ch; font-size: 1.04rem; }
+@media (max-width: 720px) {
+  .fuel-row { grid-template-columns: 1fr; gap: 12px; padding-right: 8px; }
+  .fuel-kind { margin-bottom: .4em; }
+}
 
 .b0-benefits {
   margin-top: 36px; background:
